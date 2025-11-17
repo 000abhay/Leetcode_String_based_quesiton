@@ -17,11 +17,11 @@ vector<TreeNode*> fun(int start,int end)
 {
 
 if(start>end)return {nullptr};
-
+if(memo.find({start,end})!=memo.end()) return memo[{start,end}];
 if(start==end) {
 
     TreeNode *root=new TreeNode(start);
-    return {root};
+    return memo[{start,end}] ={root};
 }
  vector<TreeNode*>result;
 for(int i=start;i<=end;i++)
@@ -44,7 +44,7 @@ for(TreeNode* l:left)
 
 
 
-return result;
+return memo[{start,end}]=result;
 }
     vector<TreeNode*> generateTrees(int n) {
         return fun(1,n);
